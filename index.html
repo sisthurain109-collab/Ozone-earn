@@ -42,11 +42,11 @@
     <button onclick="watchAd()" class="btn-earn">Watch Ad</button>
 
     <script>
-        // Adsgram Controller ကို သင့် Block ID ဖြင့် ချိတ်ဆက်ခြင်း
-        const AdController = window.Adsgram.init({ blockId: "53363" });
-
         function watchAd() {
-            AdController.show().then((result) => {
+            // ခလုတ်နှိပ်မှ Adsgram ကို ချိတ်ဆက်ခေါ်ယူခြင်း
+            const adController = window.Adsgram.init({ blockId: "53363" });
+            
+            adController.show().then((result) => {
                 // ကြော်ငြာကြည့်ပြီးသွားသောအခါ
                 alert("ကြော်ငြာကြည့်ရှုခြင်း အောင်မြင်ပါသည်။ ရမှတ် တိုးပေးလိုက်ပါပြီ။");
             }).catch((result) => {
