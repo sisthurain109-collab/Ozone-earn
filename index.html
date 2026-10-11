@@ -52,16 +52,19 @@
         let currentPoints = 0;
 
         function watchAd() {
+            if (!window.Adsgram) {
+                alert("Adsgram SDK မပွင့်သေးပါ။ ခဏစောင့်ပါ။");
+                return;
+            }
+
             const adController = window.Adsgram.init({ blockId: "53363" });
             
             adController.show().then((result) => {
-                // ကြော်ငြာ အောင်မြင်စွာ ကြည့်ပြီးမှသာ ရမှတ်တိုးရန်
                 currentPoints += 10;
                 document.getElementById('score').innerText = currentPoints;
-                alert("ကြော်ငြာကြည့်ရှုခြင်း အောင်မြင်ပါသည်။ ၁၀ မှတ် ရရှိ셨ပါပြီ။");
+                alert("ကြော်ငြာကြည့်ရှုခြင်း အောင်မြင်ပါသည်။ ၁၀ မှတ် ရရှိသွားပါပြီ။");
             }).catch((result) => {
-                // ကြော်ငြာ မပြီးဆုံးမီ ပိတ်လိုက်ပါက ရမှတ် မတိုးပါ
-                alert("ကြော်ငြာ ကြည့်ရှုခြင်း မပြီးဆုံးသေးပါ။");
+                alert("ကြော်ငြာ ကြည့်ရှုခြင်း မပြီးဆုံးသေးပါ သို့မဟုတ် အမှားဖြစ်သွားပါသည်။");
             });
         }
     </script>
