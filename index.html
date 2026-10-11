@@ -31,6 +31,10 @@
         .btn-earn:active {
             background-color: #2563eb;
         }
+        #points {
+            margin-top: 15px;
+            font-size: 20px;
+        }
     </style>
 </head>
 <body>
@@ -38,19 +42,25 @@
     <h1>Watch Ads & Earn</h1>
     <p>ကြော်ငြာကြည့်ပြီး ရမှတ်များ စုဆောင်းပါ</p>
     
+    <div id="points">Points: <span id="score">0</span></div>
+    <br>
+    
     <!-- ကြော်ငြာခေါ်ယူမည့် ခလုတ် -->
     <button onclick="watchAd()" class="btn-earn">Watch Ad</button>
 
     <script>
+        let currentPoints = 0;
+
         function watchAd() {
-            // ခလုတ်နှိပ်မှ Adsgram ကို ချိတ်ဆက်ခေါ်ယူခြင်း
             const adController = window.Adsgram.init({ blockId: "53363" });
             
             adController.show().then((result) => {
-                // ကြော်ငြာကြည့်ပြီးသွားသောအခါ
-                alert("ကြော်ငြာကြည့်ရှုခြင်း အောင်မြင်ပါသည်။ ရမှတ် တိုးပေးလိုက်ပါပြီ။");
+                // ကြော်ငြာ အောင်မြင်စွာ ကြည့်ပြီးမှသာ ရမှတ်တိုးရန်
+                currentPoints += 10;
+                document.getElementById('score').innerText = currentPoints;
+                alert("ကြော်ငြာကြည့်ရှုခြင်း အောင်မြင်ပါသည်။ ၁၀ မှတ် ရရှိ셨ပါပြီ။");
             }).catch((result) => {
-                // ကြော်ငြာ မပြီးဆုံးမီ ပိတ်လိုက်ခြင်း သို့မဟုတ် အမှားဖြစ်သွားပါက
+                // ကြော်ငြာ မပြီးဆုံးမီ ပိတ်လိုက်ပါက ရမှတ် မတိုးပါ
                 alert("ကြော်ငြာ ကြည့်ရှုခြင်း မပြီးဆုံးသေးပါ။");
             });
         }
